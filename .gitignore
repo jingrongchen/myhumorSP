@@ -1,3 +1,6 @@
 *.pyc
 *.pprof
 /ckpt/
+.github
+.idea
+
