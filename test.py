@@ -302,7 +302,7 @@ if __name__ == "__main__":
     GPT2TokenizerFast.max_model_input_sizes['gpt2'] = 1e20  # disables a misleading warning
     encoder = GPT2TokenizerFast.from_pretrained('gpt2')
 
-    reader = Reader('dataset/val.txt')
+    reader = Reader('dataset/val/val.txt')
     string_iterable = reader.stream_data(threaded=False)
 
     for doc in string_iterable:
