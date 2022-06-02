@@ -1,1 +1,1 @@
-gs://humorbucket/datasets/humor.tfrecords
+gs://humorbucket/tfrecords/train/train_96.tfrecords
