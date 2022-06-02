@@ -17,7 +17,7 @@
   "lr": 5e-5,
   "end_lr": 1e-5,
   "weight_decay": 0.1,
-  "total_steps": 10,
+  "total_steps": 30,
 
   "tpu_size": 8,
 
@@ -41,8 +41,8 @@
 
   "val_batches": 1000,
   "val_every": 50000,
-  "ckpt_every": 5,
-  "keep_every": 5,
+  "ckpt_every": 10,
+  "keep_every": 10,
 
   "name": "GPT3_6B_humor_generation",
   "wandb_project": "mesh-transformer-jax",
