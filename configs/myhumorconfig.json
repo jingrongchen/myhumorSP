@@ -10,14 +10,14 @@
   "seq": 2048,
   "cores_per_replica": 8,
   "per_replica_batch": 1,
-  "gradient_accumulation_steps": 16,
+  "gradient_accumulation_steps": 1,
 
-  "warmup_steps": 3,
-  "anneal_steps": 27,
+  "warmup_steps": 2,
+  "anneal_steps": 14,
   "lr": 5e-5,
   "end_lr": 1e-5,
   "weight_decay": 0.1,
-  "total_steps": 30,
+  "total_steps": 16,
 
   "tpu_size": 8,
 
@@ -37,11 +37,11 @@
   ],
 
   "val_batches": 4,
-  "val_every": 3,
-  "ckpt_every": 10,
-  "keep_every": 10,
+  "val_every": 2,
+  "ckpt_every": 5,
+  "keep_every": 5,
 
-  "name": "GPT3_6B_humor_generation_v3",
+  "name": "GPT3_6B_humor_generation_v4",
   "wandb_project": "mesh-transformer-jax",
   "comment": ""
 }
