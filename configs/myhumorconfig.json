@@ -36,12 +36,12 @@
     "pubmedqa"
   ],
 
-  "val_batches": 26,
-  "val_every": 2,
+  "val_batches": 4,
+  "val_every": 3,
   "ckpt_every": 10,
   "keep_every": 10,
 
-  "name": "GPT3_6B_humor_generation_v2",
+  "name": "GPT3_6B_humor_generation_v3",
   "wandb_project": "mesh-transformer-jax",
   "comment": ""
 }
