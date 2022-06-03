@@ -109,6 +109,7 @@ if __name__ == "__main__":
 
             for idx, o in enumerate(output[1][0][:, :, 0]):
                 # print(f"sample {idx}: {repr(tokenizer.decode(o))}")
+                file2.writelines(text)
                 file2.writelines(repr(tokenizer.decode(o)).split('<|endoftext|>')[0])
                 file2.writelines('\n')
             print(f"cout done:",count)
