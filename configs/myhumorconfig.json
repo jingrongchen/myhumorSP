@@ -25,7 +25,7 @@
   "model_dir": "humormodel",
 
   "train_set": "humor.train.index",
-  "val_set": "humor.val.index",
+  "val_set": {"myval":"humor.val.index"},
 
   "eval_harness_tasks": [
     "lambada",
