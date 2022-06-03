@@ -82,8 +82,8 @@ if __name__ == "__main__":
         network.state = network.move_xmap(network.state, np.zeros(local_shards))
 
         tokenizer = transformers.GPT2TokenizerFast.from_pretrained('gpt2')
-        file1 = open('../dataset/test_user.txt', 'r')
-        file2 = open('../dataset/test_user_result.txt','w')
+        file1 = open('./dataset/test_user.txt', 'r')
+        file2 = open('./dataset/test_user_result.txt','w')
         Lines = file1.readlines()
 
         count=0
