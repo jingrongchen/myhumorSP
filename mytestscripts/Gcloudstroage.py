@@ -23,8 +23,6 @@ def upload_blob_from_memory(bucket_name, contents, destination_blob_name):
     print(
         f"{destination_blob_name} with contents {contents} uploaded to {bucket_name}."
     )
-
-
 def delete_blob(bucket_name, blob_name):
     """Deletes a blob from the bucket."""
     # bucket_name = "your-bucket-name"
@@ -37,7 +35,6 @@ def delete_blob(bucket_name, blob_name):
     blob.delete()
 
     print(f"Blob {blob_name} deleted.")
-
 def download_blob(bucket_name, source_blob_name, destination_file_name):
     """Downloads a blob from the bucket."""
     # The ID of your GCS bucket
@@ -75,3 +72,6 @@ upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/train/'
 upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/val/')
 upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/test/')
 
+# gcloud compute scp humorTPU:~/myhumorSP/dataset/test_user_result.txt /Users/johnchen/Desktop/SP/myhumorSP/dataset
+
+# gcloud alpha compute tpus tpu-vm scp humorTPU:~/myhumorSP/dataset/test_user_result.txt /Users/johnchen/Desktop/SP/myhumorSP/dataset --zone=europe-west4-a

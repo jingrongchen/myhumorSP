@@ -305,3 +305,9 @@ if __name__ == "__main__":
     print(f"Creating TFRecords from files: {files}")
 
     results = create_tfrecords(files, args)
+
+
+
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/train
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/val
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/test
