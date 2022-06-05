@@ -89,7 +89,7 @@ if __name__ == "__main__":
         count=0
         for line in Lines:
             count += 1
-            print("Line{}: {}".format(count, line.strip()))
+            # print("Line{}: {}".format(count, line.strip()))
             text=line.strip()+'\n'+'Humorous reply:'
 
             context = text
