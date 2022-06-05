@@ -41,7 +41,7 @@
   "ckpt_every": 40,
   "keep_every": 40,
 
-  "name": "GPT3_6B_humor_generation_june5",
+  "name": "humor_generation_june5",
   "wandb_project": "myhumor",
   "comment": ""
 }
