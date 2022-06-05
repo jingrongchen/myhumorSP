@@ -308,6 +308,6 @@ if __name__ == "__main__":
 
 
 
-# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/train
-# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/val
-# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/test
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/train/train
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/val dataset/tfrecords/val/val
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/test dataset/tfrecords/test/test
