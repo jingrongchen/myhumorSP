@@ -63,15 +63,37 @@ def download_blob(bucket_name, source_blob_name, destination_file_name):
         )
     )
 
+def upload_blob(bucket_name, source_file_name, destination_blob_name):
+    """Uploads a file to the bucket."""
+    # The ID of your GCS bucket
+    # bucket_name = "your-bucket-name"
+    # The path to your file to upload
+    # source_file_name = "local/path/to/file"
+    # The ID of your GCS object
+    # destination_blob_name = "storage-object-name"
 
-# delete_blob('humorbucket','tfrecords/val/val_4.tfrecords')
+    storage_client = storage.Client()
+    bucket = storage_client.bucket(bucket_name)
+    blob = bucket.blob(destination_blob_name)
+
+    blob.upload_from_filename(source_file_name)
+
+    print(
+        f"File {source_file_name} uploaded to {destination_blob_name}."
+    )
+
+
+
+# delete_blob('humorbucket','tfrecords/')
 # delete_blob('humorbucket','tfrecords/train/train_16.tfrecords')
 # delete_blob('humorbucket','tfrecords/test/test_1.tfrecords')
 
-upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/train/')
-upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/val/')
-upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/test/')
+
+
+upload_blob('humorbucket','../dataset/tfrecords/train/train_1845.tfrecords','tfrecords/train/train_1845.tfrecords')
+upload_blob('humorbucket','../dataset/tfrecords/val/val_529.tfrecords','tfrecords/val/val_529.tfrecords')
+# upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/val/')
+# upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/test/')
 
 # gcloud compute scp humorTPU:~/myhumorSP/dataset/test_user_result.txt /Users/johnchen/Desktop/SP/myhumorSP/dataset
-
 # gcloud alpha compute tpus tpu-vm scp humorTPU:~/myhumorSP/dataset/test_user_result.txt /Users/johnchen/Desktop/SP/myhumorSP/dataset --zone=europe-west4-a
