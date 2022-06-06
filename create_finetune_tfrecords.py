@@ -2,7 +2,7 @@ import argparse
 import os
 import re
 import random
-
+import numpy as np
 from pathlib import Path
 from typing import List
 
@@ -44,6 +44,10 @@ def parse_args():
     cleaning_args = parser.add_argument_group('data cleaning arguments')
 
     cleaning_args.add_argument("--normalize-with-ftfy", action="store_true", help="Normalize text with ftfy")
+
+    cleaning_args.add_argument("--pad-each-datarow", action="store_true", help="pad each data row to seq length")
+
+
     cleaning_args.add_argument("--normalize-with-wikitext-detokenize",
                                action="store_true", help="Use wikitext detokenizer")
     minu_help = "Exclude repetitive documents made up of < MIN_UNIQUE_TOKENS unique tokens. These can produce large gradients."
@@ -177,15 +181,28 @@ def eot_splitting_generator(string_iterable, encoder):
                 yield d
 
 
-def prep_and_tokenize_generator(string_iterable, encoder, normalize_with_ftfy, normalize_with_wikitext_detokenize):
+def prep_and_tokenize_generator(string_iterable, encoder, normalize_with_ftfy, normalize_with_wikitext_detokenize, pad_each_datarow):
     """
     Given strings, does data cleaning / tokenization and yields arrays of tokens
     """
     for doc in string_iterable:
+
+
         if normalize_with_ftfy:  # fix text with ftfy if specified
             doc = ftfy.fix_text(doc, normalization='NFKC')
         if normalize_with_wikitext_detokenize:
             doc = wikitext_detokenizer(doc)
+
+        if pad_each_datarow:
+            tokens = encoder.encode(doc)
+            provided_ctx = len(tokens)
+            pad_amount = 155 - provided_ctx
+            if pad_amount<=0:
+                continue
+            padded_tokens = np.pad(tokens, ((pad_amount, 0),)).astype(np.uint32)
+            padded_tokens=padded_tokens+[encoder.eos_token_id]
+            yield padded_tokens
+
         tokens = encoder.encode(doc) + [encoder.eos_token_id]
         yield tokens
 
@@ -203,7 +220,8 @@ def file_to_tokenized_docs_generator(file_path, encoder, args):
     token_list_gen = prep_and_tokenize_generator(string_iterable,
                                                  encoder,
                                                  normalize_with_ftfy=args.normalize_with_ftfy,
-                                                 normalize_with_wikitext_detokenize=args.normalize_with_wikitext_detokenize
+                                                 normalize_with_wikitext_detokenize=args.normalize_with_wikitext_detokenize,
+                                                 pad_each_datarow=args.pad_each_datarow
                                                  )
     return token_list_gen
 
@@ -225,8 +243,8 @@ def read_files_to_tokenized_docs(files, args, encoder):
 
     return docs
 
-
-def arrays_to_sequences(token_list_iterable, sequence_length=2049):
+# def arrays_to_sequences(token_list_iterable, sequence_length=2049):
+def arrays_to_sequences(token_list_iterable, sequence_length=156):
     """
     Given token arrays of arbitrary lengths, concats/splits them into arrays of equal length
 
@@ -311,3 +329,6 @@ if __name__ == "__main__":
 # python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train dataset/tfrecords/train/train
 # python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/val dataset/tfrecords/val/val
 # python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/test dataset/tfrecords/test/test
+
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy --pad-each-datarow dataset/train dataset/tfrecords/train/train
+# python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy --pad-each-datarow dataset/val dataset/tfrecords/val/val
