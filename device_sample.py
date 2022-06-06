@@ -100,6 +100,6 @@ if __name__ == "__main__":
                                                                     "temp": np.ones(total_batch) * 0.75})
 
             for idx, o in enumerate(output[1][0][:, :, 0]):
-                print(f"sample {idx}: {repr(tokenizer.decode(o))}")
+                print(f"sample {idx}: {repr(tokenizer.decode(o)).split('<|endoftext|>')[0]}")
 
             print(f"completion done in {time.time() - start:06}s")

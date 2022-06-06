@@ -90,8 +90,8 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 
 
-upload_blob('humorbucket','../dataset/tfrecords/train/train_1845.tfrecords','tfrecords/train/train_1845.tfrecords')
-upload_blob('humorbucket','../dataset/tfrecords/val/val_529.tfrecords','tfrecords/val/val_529.tfrecords')
+# upload_blob('humorbucket','../dataset/tfrecords/train/train_1845.tfrecords','tfrecords/train/train_1845.tfrecords')
+# upload_blob('humorbucket','../dataset/tfrecords/val/val_529.tfrecords','tfrecords/val/val_529.tfrecords')
 # upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/val/')
 # upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/test/')
 
