@@ -37,7 +37,7 @@
   ],
 
   "val_batches": 46275,
-  "val_every": 100,
+  "val_every": 500,
   "ckpt_every": 500,
   "keep_every": 500,
 
