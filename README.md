@@ -1,33 +1,32 @@
 # Table of contents
-1. [Mesh Transformer JAX](#mesh-transformer-jax)
-2. [How to finetune](how-to-finetune)
-   1. [Updates](#updates)
-3. [Pretrained Models](#pretrained-models)
+1. [Descrpition](#Descrpition)
+2. [How to finetune](#how-to-finetune)
+3. [Environment configuration](#environment-set-up)
+4. [Pretrained Models](#pretrained-models)
    1. [GPT-J-6B](#gpt-j-6b)
       1. [Links](#links)
       2. [Acknowledgments](#acknowledgments)
       3. [License](#license)
       4. [Model Details](#model-details)
       5. [Zero-Shot Evaluations](#zero-shot-evaluations)
-4. [Architecture and Usage](#architecture-and-usage)
+5. [Architecture and Usage](#architecture-and-usage)
    1. [Fine-tuning](#fine-tuning)
    2. [JAX Dependency](#jax-dependency)
-5. [TODO](#todo)
+6. [TODO](#todo)
 
-# Mesh Transformer JAX
+# Descrpition
 
-A haiku library using the `xmap`/`pjit` operators in JAX for model parallelism of transformers.
+This repository is made for humor conversation generation using GPTJ,
+The original repository is [kingoflolz/mesh-transformer-jax](https://github.com/kingoflolz/mesh-transformer-jax)
 
-The parallelism scheme is similar to the [original Megatron-LM](https://arxiv.org/abs/1909.08053), which is efficient
-on TPUs due to the high speed 2d mesh network. There is also an experimental model version which implements [ZeRo style
-sharding](https://arxiv.org/abs/1910.02054).
+#Environment set up
+>pip install  -r requirement.txt
 
-This library is designed for scalability up to approximately 40B parameters on TPUv3s, beyond which different
-parallelism strategies should be used. See other implementations such as
-[GPT-NeoX](https://github.com/EleutherAI/gpt-neox) or [DeepSpeed](https://github.com/microsoft/DeepSpeed) for that.
+>sh init_ray.sh
 
-One future direction for research is integrating this codebase with
-[swarm-jax](https://github.com/kingoflolz/swarm-jax), to achieve further scalability with pipeline parallelism.
+>pip3 install jax==0.2.12
+
+>pip3 install jaxlib==0.1.68
 
 # How to finetune
 
