@@ -103,3 +103,4 @@ if __name__ == "__main__":
                 print(f"sample {idx}: {repr(tokenizer.decode(o)).split('<|endoftext|>')[0]}")
 
             print(f"completion done in {time.time() - start:06}s")
+
