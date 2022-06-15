@@ -128,7 +128,7 @@ Sentiment: Negative
 
 For creating tfrecords you need for training, the command might look the following
 
-> python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train train
+> python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy #path-to-the-dataset-folder name-for-the-tfrecords
 
 --pad-each-datarow
 > pad each data row to same sequence length
