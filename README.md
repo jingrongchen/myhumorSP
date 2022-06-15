@@ -1,17 +1,18 @@
 # Table of contents
 1. [Mesh Transformer JAX](#mesh-transformer-jax)
-    1. [Updates](#updates)
-2. [Pretrained Models](#pretrained-models)
+2. [How to finetune](how-to-finetune)
+   1. [Updates](#updates)
+3. [Pretrained Models](#pretrained-models)
    1. [GPT-J-6B](#gpt-j-6b)
       1. [Links](#links)
       2. [Acknowledgments](#acknowledgments)
       3. [License](#license)
       4. [Model Details](#model-details)
       5. [Zero-Shot Evaluations](#zero-shot-evaluations)
-3. [Architecture and Usage](#architecture-and-usage)
+4. [Architecture and Usage](#architecture-and-usage)
    1. [Fine-tuning](#fine-tuning)
    2. [JAX Dependency](#jax-dependency)
-4. [TODO](#todo)
+5. [TODO](#todo)
 
 # Mesh Transformer JAX
 
@@ -28,9 +29,9 @@ parallelism strategies should be used. See other implementations such as
 One future direction for research is integrating this codebase with
 [swarm-jax](https://github.com/kingoflolz/swarm-jax), to achieve further scalability with pipeline parallelism.
 
-## Updates
+# How to finetune
 
-**12-07-21**: Added [guide to fine tuning](howto_finetune.md)
+Follow the guidance [guide to fine tuning](howto_finetune.md)
 
 # Pretrained Models
 
@@ -160,7 +161,7 @@ Please read the [step by step guide](howto_finetune.md) for thorough fine-tuning
 ### JAX Dependency
 
 Note this library has some specific requirements for JAX version. Specifically, to use the v1 models (including
- GPT-J 6B), `jax==0.2.12` is required. This in turn depends on `jaxlib==0.1.68`. **If this is not done, you will get
+GPT-J 6B), `jax==0.2.12` is required. This in turn depends on `jaxlib==0.1.68`. **If this is not done, you will get
 cryptic xmap errors**
 
 However, to use the v2 model code (no publicly released weights), the newest JAX version can be used.
