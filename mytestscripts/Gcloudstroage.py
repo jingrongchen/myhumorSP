@@ -90,10 +90,12 @@ def upload_blob(bucket_name, source_file_name, destination_blob_name):
 
 
 
-upload_blob('humorbucket','../dataset/tfrecords/train/train_162082.tfrecords','tfrecords/train/train_162082.tfrecords')
-upload_blob('humorbucket','../dataset/tfrecords/val/val_46275.tfrecords','tfrecords/val/val_46275.tfrecords')
+# upload_blob('humorbucket','../dataset/tfrecords/train/train_162082.tfrecords','tfrecords/train/train_162082.tfrecords')
+# upload_blob('humorbucket','../dataset/tfrecords/val/val_46275.tfrecords','tfrecords/val/val_46275.tfrecords')
 # upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/val/')
 # upload_blob_from_memory('humorbucket','dataset/tfrecords/...','tfrecords/test/')
 
 # gcloud compute scp humorTPU:~/myhumorSP/dataset/test_user_result.txt /Users/johnchen/Desktop/SP/myhumorSP/dataset
 # gcloud alpha compute tpus tpu-vm scp humorTPU:~/myhumorSP/dataset/test_user_result.txt /Users/johnchen/Desktop/SP/myhumorSP/dataset --zone=europe-west4-a
+
+# gcloud compute scp johnTPU:~/myhumorSP/testrequiremets.txt /Users/johnchen/Desktop/SP/myhumorSP/dataset
