@@ -168,6 +168,18 @@ However, to use the v2 model code (no publicly released weights), the newest JAX
 
 To cite this repository:
 ```
+@misc{myhumorSP,
+  author = {Jingrong CHEN},
+  title = {{Humor generation using GPT-J6B}},
+  howpublished = {\url{https://github.com/jingrongchen/myhumorSP}},
+  year = 2022,
+  month = June
+}
+```
+
+
+To cite original repository:
+```
 @misc{mesh-transformer-jax,
   author = {Wang, Ben},
   title = {{Mesh-Transformer-JAX: Model-Parallel Implementation of Transformer Language Model with JAX}},
@@ -192,12 +204,6 @@ If you use this repository or any of the pretrained weights to do something cool
 Feel free to open a github issue or reach out over email (in profile).
 
 # TODO
-- [x] disentangle heads and shards
-- [x] test/benchmark on TPU
-- [x] implement gradient checkpointing
-- [x] fix initialization
-- [x] mixed precision
-- [x] deal with preemptible TPUs
-- [x] test and validate generation
-- [x] shard activations instead of replicating for memory efficiency (in v2)
-- [x] support ZeRO style sharding (in v2)
+- [ ] Colab version implementation
+- [ ] server web for testing
+
