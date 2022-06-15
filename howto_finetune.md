@@ -72,3 +72,54 @@ set to determine your training loss with.
 but usually you should stop after annealing is done)
 
 To illustrate: I have a small dataset that tokenized into 1147 sequences as a .tfrecord. Dividing by `gradient_accumulation_steps` set to `16`, rounding up to ensure I use all the data, equals 72 steps per epoch. I'll set `lr` to `5e-5`, `end_lr` to a fifth of that, `1e-5`; that may be too much, it's on the high end of the recommended range. I'll set `total_steps` to `72` for one epoch, since I don't have a validation set. Then I'll set `anneal_steps` to `65` and `warmup_steps` to `7`. Simple as that, but you may need to fiddle with the specifics on your own.
+
+## Dataset Format Notes
+Here we show some examples for the format of the dataset, in general the data samples are seperated with
+**<|endoftext|>** 
+
+### Example1
+For the humor conversation generation, the dataset could be as follows:
+
+>User: What kind of internet to flies use?
+Humorous reply: Wi-Fly **<|endoftext|>** User: Stop leaving the freezer door open!
+Humorous reply: this is why we can't have ice things.**<|endoftext|>**.....
+
+### Example 2
+For classification, the dataset might look like the following:
+
+<blockquote>
+
+Classify the following message into one of the following categories: Billing, Bug, Feature request, Urgent
+
+Message: I was charged incorrectly for last month. It charged me $100, but should have been $80 due to removing one of our developers off your platform before the billing cycle started. Please refund my account.
+
+Category: Billing
+
+<|endoftext|>
+
+Classify the following message into one of the following categories: Billing, Bug, Feature request, Urgent
+
+Message: Hi, my email templates are not loading properly. I've tried selecting multiple of them but the email is not populating correctly.
+
+Category: Bug
+
+<|endoftext|>
+</blockquote>
+
+### Example 3
+
+For Sentiment Analysis, the dataset might look the following:
+<blockquote>
+Review: I'm overjoyed with the new iPhone 13! The camera is amazing.
+
+Sentiment: Positive
+
+<|endoftext|>
+
+Review: The iPhone 13 has marginal upgrades at best. My experience so far has been a let down.
+
+Sentiment: Negative
+
+<|endoftext|>
+
+</blockquote>
