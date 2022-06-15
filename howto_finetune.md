@@ -123,3 +123,21 @@ Sentiment: Negative
 <|endoftext|>
 
 </blockquote>
+
+## Fintue tfrecords preparetion Notes
+
+For creating tfrecords you need for training, the command might look the following
+
+> python3 create_finetune_tfrecords.py --verbose --normalize-with-ftfy dataset/train train
+
+--pad-each-datarow
+> pad each data row to same sequence length
+
+--token-sequence-length
+> set the token length you want your dataset to be padded
+
+--normalize-with-ftfy
+> Normalize text with ftfy
+
+For more information, please check [create_tfrecords](#create_finetune_tfrecords.py)
+
