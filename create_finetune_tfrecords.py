@@ -47,13 +47,18 @@ def parse_args():
 
     cleaning_args.add_argument("--pad-each-datarow", action="store_true", help="pad each data row to seq length")
 
-
     cleaning_args.add_argument("--normalize-with-wikitext-detokenize",
                                action="store_true", help="Use wikitext detokenizer")
     minu_help = "Exclude repetitive documents made up of < MIN_UNIQUE_TOKENS unique tokens. These can produce large gradients."
     minu_help += " Set <= 0 to disable. If enabled, 200 is a good default value. (Default: 0)"
     cleaning_args.add_argument("--min-unique-tokens", type=int, default=0,
                                help=minu_help)
+
+    tksl_help = " Set the token length for each data row. (Default: 2049)"
+    cleaning_args.add_argument("--token-sequence-length", type=int, default=2049,
+                               help=tksl_help)
+
+
 
     shuffle_pack_args = parser.add_argument_group('data shuffling/packing arguments')
     repack_ep_help = "Repeat the data N_REPACK_EPOCHS times, shuffled differently in each repetition. Recommended for multi-epoch training (set this to your intended number of epochs)."
@@ -181,7 +186,7 @@ def eot_splitting_generator(string_iterable, encoder):
                 yield d
 
 
-def prep_and_tokenize_generator(string_iterable, encoder, normalize_with_ftfy, normalize_with_wikitext_detokenize, pad_each_datarow):
+def prep_and_tokenize_generator(string_iterable, encoder, normalize_with_ftfy, normalize_with_wikitext_detokenize, pad_each_datarow,token_length):
     """
     Given strings, does data cleaning / tokenization and yields arrays of tokens
     """
@@ -196,7 +201,7 @@ def prep_and_tokenize_generator(string_iterable, encoder, normalize_with_ftfy, n
         if pad_each_datarow:
             tokens = encoder.encode(doc)
             provided_ctx = len(tokens)
-            pad_amount = 155 - provided_ctx
+            pad_amount = token_length-1 - provided_ctx
             if pad_amount<=0:
                 continue
             padded_tokens = np.pad(tokens, ((pad_amount, 0),)).astype(np.uint32)
@@ -221,7 +226,8 @@ def file_to_tokenized_docs_generator(file_path, encoder, args):
                                                  encoder,
                                                  normalize_with_ftfy=args.normalize_with_ftfy,
                                                  normalize_with_wikitext_detokenize=args.normalize_with_wikitext_detokenize,
-                                                 pad_each_datarow=args.pad_each_datarow
+                                                 pad_each_datarow=args.pad_each_datarow,
+                                                 token_length=args.token_sequence_length
                                                  )
     return token_list_gen
 
@@ -244,7 +250,7 @@ def read_files_to_tokenized_docs(files, args, encoder):
     return docs
 
 # def arrays_to_sequences(token_list_iterable, sequence_length=2049):
-def arrays_to_sequences(token_list_iterable, sequence_length=156):
+def arrays_to_sequences(token_list_iterable, sequence_length):
     """
     Given token arrays of arbitrary lengths, concats/splits them into arrays of equal length
 
@@ -264,7 +270,7 @@ def arrays_to_sequences(token_list_iterable, sequence_length=156):
 
 
 def chunk_and_finalize(arrays, args, encoder):
-    sequences = list(arrays_to_sequences(arrays))
+    sequences = list(arrays_to_sequences(arrays,args.token_sequence_length))
 
     full_seqs, trailing_data = sequences[:-1], sequences[-1]
 
