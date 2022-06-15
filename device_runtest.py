@@ -121,3 +121,7 @@ if __name__ == "__main__":
 
         file2.close
         file1.close
+
+
+# the file for test is exist in /dataset/test_user.txt
+# the result was written to /dataset/test_user_result.txt
